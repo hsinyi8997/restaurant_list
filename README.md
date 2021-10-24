@@ -1,23 +1,24 @@
 # Restaurant List
 A web server which provides restaurants information for user to search for.
 
-# index.handlebars view
+## ScreenShots
+### index.handlebars view
 ![index.handlebars screenshot](https://github.com/hsinyi8997/restaurant_list/blob/main/public/image/index.jpg)
 
-# show.handlebars view
+### show.handlebars view
 ![show.handlebars screenshot](https://github.com/hsinyi8997/restaurant_list/blob/main/public/image/show.jpg)
 
-# Feature
+## Feature
 * User can view all restaurants in list
 * User can click on the restaurant to see more information
 * User can search specific restaurant by typing keyword
 
-# Prerequisites
+## Prerequisites
 * Node.js (v14.16.0)
 * Express
 * Express-handlebars
 
-# Installation
+## Installation
 1. Open terminal and clone the repo to local
 ```
 git clone https://github.com/hsinyi8997/restaurant_list.git
@@ -31,7 +32,7 @@ cd restaurant_list
 npm install
 ```
 
-# Execution
+## Execution
 1. Start Express server in Node.js
 ```
 npm run start
