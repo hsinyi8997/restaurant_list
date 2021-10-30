@@ -2,6 +2,7 @@
 const express = require('express')
 const exphbs = require('express-handlebars')
 const mongoose = require('mongoose')
+const bodyParser = require('body-parser')
 const restaurantList = require('./models/restaurant')
 const app = express()
 const port = 3000
@@ -23,6 +24,9 @@ app.engine('handlebars', exphbs({ defaultLayout: 'main' }))
 app.set('view engine', 'handlebars')
 app.use(express.static('public'))
 
+//bodyParser
+app.use(bodyParser.urlencoded({ extended: true }))
+
 //routing section
 app.get('/', (req, res) => {
   return restaurantList.find()
@@ -43,6 +47,35 @@ app.get('/search', (req, res) => {
     return item.name.toLowerCase().includes(keyword) || item.name_en.toLowerCase().includes(keyword) || item.category.toLowerCase().includes(keyword)
   })
   res.render('index', { restaurants, keyword: req.query.keyword.trim() })
+})
+
+app.get('/new', (req, res) => {
+  return res.render('new')
+})
+
+app.post('/restaurants', (req, res) => {
+  const name = req.body.name
+  const name_en = req.body.name_en
+  const category = req.body.category
+  const image = req.body.image
+  const location = req.body.location
+  const phone = req.body.phone
+  const google_map = req.body.google_map
+  const rating = req.body.rating
+  const description = req.body.description
+  return restaurantList.create({
+    name,
+    name_en,
+    category,
+    image,
+    location,
+    phone,
+    google_map,
+    rating,
+    description
+  })
+    .then(() => {res.redirect('/')})
+    .catch(error => console.log(error))
 })
 
 //start express server
