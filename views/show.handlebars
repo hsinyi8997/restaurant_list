@@ -35,6 +35,10 @@
       <p class="mb-5">
         {{ restaurant.description }}
       </p>
+      <a href="/">回首頁</a>
+      <form action="/restaurants/{{ restaurant._id }}/delete" method="post" style="display: inline;">
+        <button type="submit">delete</button>
+      </form>
 
       <img class="rounded mx-auto d-block mb-4 w-100" src="{{ restaurant.image }}" alt="{{ restaurant.name }}"
         style="max-width: 600px;">
