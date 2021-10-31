@@ -36,6 +36,7 @@
         {{ restaurant.description }}
       </p>
       <a href="/">回首頁</a>
+      <a href="/restaurants/{{ restaurant._id}}/edit">edit</a>
       <form action="/restaurants/{{ restaurant._id }}/delete" method="post" style="display: inline;">
         <button type="submit">delete</button>
       </form>
