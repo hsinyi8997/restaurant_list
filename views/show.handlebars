@@ -32,17 +32,19 @@
         {{ restaurant.phone }}
       </p>
 
-      <p class="mb-5">
+      <p class="mb-4">
         {{ restaurant.description }}
       </p>
-      <a href="/">回首頁</a>
-      <a href="/restaurants/{{ restaurant._id}}/edit">edit</a>
-      <form action="/restaurants/{{ restaurant._id }}/delete" method="post" style="display: inline;">
-        <button type="submit">delete</button>
-      </form>
 
       <img class="rounded mx-auto d-block mb-4 w-100" src="{{ restaurant.image }}" alt="{{ restaurant.name }}"
         style="max-width: 600px;">
     </div>
+  </div>
+  <div class="mb-5 mx-auto text-center">
+    <a href="/" class="btn btn-outline-secondary">回首頁</a>
+    <a href="/restaurants/{{ restaurant._id}}/edit" class="btn btn-outline-primary">edit</a>
+    <form action="/restaurants/{{ restaurant._id }}/delete" method="post" style="display: inline;">
+      <button type="submit" class="btn btn-outline-danger">delete</button>
+    </form>
   </div>
 </div>
