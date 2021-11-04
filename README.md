@@ -12,6 +12,9 @@ A web server which provides restaurants information for user to search for.
 * User can view all restaurants in list
 * User can click on the restaurant to see more information
 * User can search specific restaurant by typing keyword
+* User can create a new restaurant
+* User can edit information of restaurant
+* User can delete restaurant
 
 ## Prerequisites
 * Node.js (v14.16.0)
