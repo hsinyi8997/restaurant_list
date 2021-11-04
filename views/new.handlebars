@@ -1,12 +1,69 @@
-<form action="/restaurants" method="post">
-  <input type="text" name="name" placeholder="餐廳名稱" style="display: block;">
-  <input type="text" name="name_en" placeholder="餐廳英文名稱" style="display: block;">
-  <input type="text" name="category" placeholder="類別" style="display: block;">
-  <input type="text" name="image" placeholder="照片連結" style="display: block;">
-  <input type="text" name="location" placeholder="地址" style="display: block;">
-  <input type="text" name="phone" placeholder="電話" style="display: block;">
-  <input type="text" name="google_map" placeholder="地圖連結" style="display: block;">
-  <input type="text" name="rating" placeholder="評分0-10分" style="display: block;">
-  <input type="text" name="description" placeholder="餐廳簡介" style="display: block;">
-  <button type="submit">新增</button>
-</form>
+
+<div class="container col-8 mt-5">
+  <form class="needs-validation" action="/restaurants" method="post" novalidate>
+    <div class="form-row">
+      <div class="col-md-6 mb-3">
+        <label for="name">餐廳名稱</label>
+        <input type="text" class="form-control" id="name" name="name" placeholder="餐廳名稱" required>
+        <div class="valid-tooltip">
+          Looks good!
+        </div>
+      </div>
+      <div class="col-md-6 mb-3">
+        <label for="name_en">餐廳英文名稱</label>
+        <input type="text" class="form-control" id="name_en" name="name_en" placeholder="餐廳英文名稱">
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="col-md-4 mb-3">
+        <label for="category">餐廳類別</label>
+        <input type="text" class="form-control" id="category" name="category" placeholder="餐廳類別" required>
+        <div class="invalid-tooltip">
+          請填寫餐廳類別
+        </div>
+      </div>
+      <div class="col-md-4 mb-3">
+        <label for="rating">餐廳評分</label>
+        <input type="text" class="form-control" id="rating" name="rating" placeholder="分數0-10分" required>
+        <div class="invalid-tooltip">
+          請填寫分數0-10
+        </div>
+      </div>
+      <div class="col-md-4 mb-3">
+        <label for="phone">電話</label>
+        <input type="text" class="form-control" id="phone" name="phone" placeholder="電話" required>
+        <div class="invalid-tooltip">
+          請填寫餐廳電話
+        </div>
+      </div>
+      <div class="col-md-12 mb-3">
+        <label for="location">地址</label>
+        <input type="text" class="form-control" id="location" name="location" placeholder="地址" required>
+        <div class="invalid-tooltip">
+          請填寫餐廳地址
+        </div>
+      </div>
+      <div class="col-md-12 mb-3">
+        <label for="google_map">地圖連結</label>
+        <input type="text" class="form-control" id="google_map" name="google_map" placeholder="地圖連結" required>
+        <div class="invalid-tooltip">
+          請提供地圖連結
+        </div>
+      </div>
+      <div class="col-md-12 mb-3">
+        <label for="image">照片連結</label>
+        <input type="text" class="form-control" id="image" name="image" placeholder="照片連結" required>
+        <div class="invalid-tooltip">
+          請提供照片連結
+        </div>
+      </div>
+      <div class="col-md-12 mb-3">
+        <label for="description">餐廳簡介</label>
+        <textarea class="form-control" id="description" name="description" rows="5"></textarea>
+      </div>
+    </div>
+    <div class="text-center">
+      <button class="btn btn-primary" type="submit">新增</button>
+    </div>
+  </form>
+</div>
