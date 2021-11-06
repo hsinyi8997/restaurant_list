@@ -5,8 +5,8 @@
       <div class="col-md-6 mb-3">
         <label for="name">餐廳名稱</label>
         <input type="text" class="form-control" id="name" name="name" placeholder="餐廳名稱" value="{{ restaurant.name }}" required>
-        <div class="valid-tooltip">
-          Looks good!
+        <div class="invalid-feedback">
+          請填寫餐廳名稱
         </div>
       </div>
       <div class="col-md-6 mb-3">
@@ -18,48 +18,51 @@
       <div class="col-md-4 mb-3">
         <label for="category">餐廳類別</label>
         <input type="text" class="form-control" id="category" name="category" placeholder="餐廳類別" value="{{ restaurant.category }}" required>
-        <div class="invalid-tooltip">
+        <div class="invalid-feedback">
           請填寫餐廳類別
         </div>
       </div>
       <div class="col-md-4 mb-3">
         <label for="rating">評分0-10分</label>
         <input type="text" class="form-control" id="rating" name="rating" placeholder="分數0-10分" value="{{ restaurant.rating }}" required>
-        <div class="invalid-tooltip">
+        <div class="invalid-feedback">
           請填寫分數0-10
         </div>
       </div>
       <div class="col-md-4 mb-3">
         <label for="phone">電話</label>
         <input type="text" class="form-control" id="phone" name="phone" placeholder="電話" value="{{ restaurant.phone }}" required>
-        <div class="invalid-tooltip">
+        <div class="invalid-feedback">
           請填寫餐廳電話
         </div>
       </div>
       <div class="col-md-12 mb-3">
         <label for="location">地址</label>
         <input type="text" class="form-control" id="location" name="location" placeholder="地址" value="{{ restaurant.location }}" required>
-        <div class="invalid-tooltip">
+        <div class="invalid-feedback">
           請填寫餐廳地址
         </div>
       </div>
       <div class="col-md-12 mb-3">
         <label for="google_map">地圖連結</label>
         <input type="text" class="form-control" id="google_map" name="google_map" placeholder="地圖連結" value="{{ restaurant.google_map }}" required>
-        <div class="invalid-tooltip">
+        <div class="invalid-feedback">
           請提供地圖連結
         </div>
       </div>
       <div class="col-md-12 mb-3">
         <label for="image">照片連結</label>
         <input type="text" class="form-control" id="image" name="image" placeholder="照片連結" value="{{ restaurant.image }}" required>
-        <div class="invalid-tooltip">
+        <div class="invalid-feedback">
           請提供照片連結
         </div>
       </div>
       <div class="col-md-12 mb-3">
         <label for="description">餐廳簡介</label>
-        <textarea class="form-control" id="description" name="description" rows="5">{{ restaurant.description }}</textarea>
+        <textarea class="form-control" id="description" name="description" rows="5" required>{{ restaurant.description }}</textarea>
+        <div class="invalid-feedback">
+          請填寫餐廳簡介
+        </div>
       </div>
     </div>
     <div class="text-center">
@@ -68,3 +71,24 @@
     </div>
   </form>
 </div>
+
+
+<script>
+  (function () {
+    'use strict';
+    window.addEventListener('load', function () {
+      // Fetch all the forms we want to apply custom Bootstrap validation styles to
+      var forms = document.getElementsByClassName('needs-validation');
+      // Loop over them and prevent submission
+      var validation = Array.prototype.filter.call(forms, function (form) {
+        form.addEventListener('submit', function (event) {
+          if (form.checkValidity() === false) {
+            event.preventDefault();
+            event.stopPropagation();
+          }
+          form.classList.add('was-validated');
+        }, false);
+      });
+    }, false);
+  })();
+</script>
