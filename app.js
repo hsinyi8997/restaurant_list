@@ -3,6 +3,7 @@ const express = require('express')
 const exphbs = require('express-handlebars')
 const mongoose = require('mongoose')
 const bodyParser = require('body-parser')
+const methodOverride = require('method-override')
 const restaurantList = require('./models/restaurant')
 const restaurant = require('./models/restaurant')
 const app = express()
@@ -24,6 +25,7 @@ db.once('open', () => {
 app.engine('handlebars', exphbs({ defaultLayout: 'main' }))
 app.set('view engine', 'handlebars')
 app.use(express.static('public'))
+app.use(methodOverride('_method'))
 
 //bodyParser
 app.use(bodyParser.urlencoded({ extended: true }))
@@ -56,16 +58,8 @@ app.get('/new', (req, res) => {
   return res.render('new')
 })
 
-app.post('/restaurants', (req, res) => {
-  const name = req.body.name
-  const name_en = req.body.name_en
-  const category = req.body.category
-  const image = req.body.image
-  const location = req.body.location
-  const phone = req.body.phone
-  const google_map = req.body.google_map
-  const rating = req.body.rating
-  const description = req.body.description
+app.put('/restaurants', (req, res) => {
+  const { name, name_en, category, image, location, phone, google_map, rating, description } = req.body
   return restaurantList.create({
     name,
     name_en,
@@ -81,7 +75,7 @@ app.post('/restaurants', (req, res) => {
     .catch(error => console.log(error))
 })
 
-app.post('/restaurants/:id/delete', (req, res) => {
+app.delete('/restaurants/:id', (req, res) => {
   const id = req.params.id
   return restaurantList.findById(id)
     .then(restaurant => restaurant.remove())
@@ -97,17 +91,9 @@ app.get('/restaurants/:id/edit', (req, res) => {
     .catch(error => console.log(error))
 })
 
-app.post('/restaurants/:id/edit', (req, res) => {
+app.put('/restaurants/:id', (req, res) => {
   const id = req.params.id
-  const name = req.body.name
-  const name_en = req.body.name_en
-  const category = req.body.category
-  const image = req.body.image
-  const location = req.body.location
-  const phone = req.body.phone
-  const google_map = req.body.google_map
-  const rating = req.body.rating
-  const description = req.body.description
+  const { name, name_en, category, image, location, phone, google_map, rating, description } = req.body
   return restaurantList.findById(id)
     .then(restaurant => {
       restaurant.name = name
