@@ -15,10 +15,44 @@ router.get('/new', (req, res) => {
 
 router.get('/search', (req, res) => {
   const keyword = req.query.keyword.trim().toLowerCase()
-  restaurantList.find({ $or: [{ name: new RegExp(keyword, 'i') }, { category: new RegExp(keyword, 'i') }, { name_en: new RegExp(keyword, 'i') }] })
+  const sortItem = req.query.sort
+  const sortMethod = {}
+  let sortInput =''
+
+  switch (sortItem) {
+    case 'name_asc':
+      sortMethod['name'] = 'asc'
+      sortInput = `A > Z`
+      break
+    case 'name_desc':
+      sortMethod['name'] = 'desc'
+      sortInput = 'Z > A'
+      break
+    case 'rating_desc':
+      sortMethod['rating'] = 'desc'
+      sortInput = '評分最高'
+      break
+    case 'category':
+      sortMethod['category'] = 'asc'
+      sortInput = '類別'
+      break
+    case 'location':
+      sortMethod['location'] = 'asc'
+      sortInput = '地區'
+      break
+    default:
+      sortMethod['_id'] = 'asc'
+  }
+
+  restaurantList.find()
     .lean()
-    .then(restaurants => res.render('index', { restaurants, keyword }))
-    .catch(error => console.log(error))
+    .sort(sortMethod)
+    .then(restaurants => {
+      restaurants = restaurants.filter(restaurant => {
+        return restaurant.name.toLowerCase().includes(keyword) || restaurant.name_en.toLowerCase().includes(keyword) || restaurant.category.toLowerCase().includes(keyword)
+      })
+      res.render('index', { restaurants, keyword, sortInput })
+    })
 })
 
 module.exports = router
