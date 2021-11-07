@@ -11,7 +11,8 @@ router.get('/:restaurant_id', (req, res) => {
 })
 
 router.put('/', (req, res) => {
-  const { name, name_en, category, image, location, phone, google_map, rating, description } = req.body
+  const { name, name_en, category, image, location, phone, google_map, description } = req.body
+  const rating = Number(req.body.rating)
   return restaurantList.create({
     name,
     name_en,

@@ -17,16 +17,24 @@
     <div class="form-row">
       <div class="col-md-4 mb-3">
         <label for="category">餐廳類別</label>
-        <input type="text" class="form-control" id="category" name="category" placeholder="餐廳類別" value="{{ restaurant.category }}" required>
+        <input list="categories" class="form-control" id="category" name="category" placeholder="餐廳類別" value="{{ restaurant.category }}" required>
+        <datalist id="categories">
+          <option>日本料理</option>
+          <option>義式餐廳</option>
+          <option>中東料理</option>
+          <option>美式</option>
+          <option>咖啡</option>
+          <option>酒吧</option>
+        </datalist>
         <div class="invalid-feedback">
-          請填寫餐廳類別
+          請選擇餐廳類別
         </div>
       </div>
       <div class="col-md-4 mb-3">
         <label for="rating">評分0-10分</label>
-        <input type="text" class="form-control" id="rating" name="rating" placeholder="分數0-10分" value="{{ restaurant.rating }}" required>
+        <input type="number" class="form-control" id="rating" name="rating" placeholder="分數0-5分" max="5" min="0.1" step="0.1" value="{{ restaurant.rating }}" required>
         <div class="invalid-feedback">
-          請填寫分數0-10
+          請填寫分數0-5
         </div>
       </div>
       <div class="col-md-4 mb-3">

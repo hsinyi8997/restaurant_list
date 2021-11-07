@@ -17,28 +17,36 @@
     <div class="form-row">
       <div class="col-md-4 mb-3">
         <label for="category">餐廳類別</label>
-        <input type="text" class="form-control" id="category" name="category" placeholder="餐廳類別" required>
+        <input list="categories" class="form-control" id="category" name="category" placeholder="餐廳類別" required>
+        <datalist id="categories">
+          <option>日本料理</option>
+          <option>義式餐廳</option>
+          <option>中東料理</option>
+          <option>美式</option>
+          <option>咖啡</option>
+          <option>酒吧</option>
+        </datalist>
         <div class="invalid-feedback">
-          請填寫餐廳類別
+          請選擇餐廳類別
         </div>
       </div>
       <div class="col-md-4 mb-3">
         <label for="rating">餐廳評分</label>
-        <input type="text" class="form-control" id="rating" name="rating" placeholder="分數0-10分" required>
+        <input type="number" class="form-control" id="rating" name="rating" placeholder="分數0-5分" max="5" min="0.1" step="0.1" required>
         <div class="invalid-feedback">
-          請填寫分數0-10
+          請填寫分數0-5
         </div>
       </div>
       <div class="col-md-4 mb-3">
         <label for="phone">電話</label>
-        <input type="text" class="form-control" id="phone" name="phone" placeholder="電話" required>
+        <input type="text" class="form-control" id="phone" name="phone" placeholder="請輸入電話，如：0225986589" required>
         <div class="invalid-feedback">
           請填寫餐廳電話
         </div>
       </div>
       <div class="col-md-12 mb-3">
         <label for="location">地址</label>
-        <input type="text" class="form-control" id="location" name="location" placeholder="地址" required>
+        <input type="text" class="form-control" id="location" name="location" placeholder="請輸入地址，如：台北市羅斯福路三段 283 巷 17 號" required>
         <div class="invalid-feedback">
           請填寫餐廳地址
         </div>
@@ -59,7 +67,7 @@
       </div>
       <div class="col-md-12 mb-3">
         <label for="description">餐廳簡介</label>
-        <textarea class="form-control" id="description" name="description" rows="5" required></textarea>
+        <textarea class="form-control" id="description" name="description" rows="5" placeholder="請輸入有關餐廳的描述" required></textarea>
         <div class="invalid-feedback">
           請填寫餐廳簡介
         </div>
