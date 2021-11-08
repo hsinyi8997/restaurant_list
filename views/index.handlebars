@@ -34,9 +34,9 @@
 <div class="container mt-5">
   <div class="row">
     <div class="col-md-10 col-12 mx-auto">
-      <div class="card-columns d-flex-wrap">
+      <div class="d-flex flex-wrap justify-content-between">
         {{#each restaurants}}
-          <div class="card mb-4">
+          <div class="card mb-4" style="width: 18rem;">
             <a href="/restaurants/{{ this._id }}" class="text-secondary"></a>
             <img class="card-img-top" src="{{ this.image }}" alt="{{ this.name }}">
             <div class="card-body p-3">
