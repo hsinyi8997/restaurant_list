@@ -1,11 +1,11 @@
 const express = require('express')
 const router = express.Router()
 const restaurantList = require('../../models/restaurant')
-const regExpID = new RegExp(/[\w\S]{24,}/, 'i')
+const regExpId = new RegExp(/^[a-f\d]{24}$/i)
 
 router.get('/:restaurant_id', (req, res) => {
   const id = req.params.restaurant_id
-  if (regExpID.test(id)) {
+  if (regExpId.test(id)) {
     return restaurantList.findById(id)
       .lean()
       .then(restaurant => res.render('show', { restaurant }))
@@ -37,7 +37,7 @@ router.put('/', (req, res) => {
 
 router.delete('/:id', (req, res) => {
   const id = req.params.id
-  if (regExpID.test(id)) {
+  if (regExpId.test(id)) {
     return restaurantList.findById(id)
       .then(restaurant => restaurant.remove())
       .then(() => res.redirect('/'))
@@ -48,7 +48,7 @@ router.delete('/:id', (req, res) => {
 
 router.get('/:id/edit', (req, res) => {
   const id = req.params.id
-  if (regExpID.test(id)) {
+  if (regExpId.test(id)) {
   return restaurantList.findById(id)
     .lean()
     .then(restaurant => res.render('edit', { restaurant }))
@@ -58,7 +58,7 @@ router.get('/:id/edit', (req, res) => {
 
 router.put('/:id', (req, res) => {
   const id = req.params.id
-  if (regExpID.test(id)) {
+  if (regExpId.test(id)) {
   const { name, name_en, category, image, location, phone, google_map, rating, description } = req.body
   return restaurantList.findById(id)
     .then(restaurant => {
